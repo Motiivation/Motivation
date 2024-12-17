@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Motivation Zone</title>
+    <style>
+        /* General styles */
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url('https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0') no-repeat center center/cover;
+            color: #333;
+            text-align: center;
+        }
+
+        /* Header styling */
+        header {
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 1.5rem 0;
+            font-size: 2.5rem;
+            letter-spacing: 1px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Tabs styling */
+        .tabs {
+            display: flex;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.8);
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            margin-bottom: 20px;
+        }
+
+        .tab {
+            padding: 15px 30px;
+            cursor: pointer;
+            font-weight: bold;
+            color: #333;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        .tab:hover, .tab.active {
+            background: #6a11cb;
+            color: white;
+        }
+
+        .tab-content {
+            display: none;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.9);
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            margin: 0 auto;
+            max-width: 800px;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Button styling */
+        .quote-btn {
+            margin: 30px auto;
+            padding: 15px 25px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: white;
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .quote-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Quote Box Enhancements */
+        #quote-box {
+            position: relative;
+            margin: 20px auto;
+            padding: 2rem;
+            max-width: 600px;
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            font-size: 1.5rem;
+            font-style: italic;
+            font-weight: bold;
+            color: #444;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+            transform: scale(1);
+            animation: pop 0.6s ease-in-out;
+        }
+
+        #quote-box:after {
+            content: '\201C'; /* Opening Quote */
+            position: absolute;
+            top: -30px;
+            left: -20px;
+            font-size: 5rem;
+            font-weight: bold;
+            color: #6a11cb;
+            opacity: 0.5;
+        }
+
+        #quote-box:before {
+            content: '\201D'; /* Closing Quote */
+            position: absolute;
+            bottom: -30px;
+            right: -20px;
+            font-size: 5rem;
+            font-weight: bold;
+            color: #6a11cb;
+            opacity: 0.5;
+        }
+
+        @keyframes pop {
+            0% {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+            80% {
+                transform: scale(1.1);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        /* Styled Link Section */
+        .store-link {
+            display: inline-block;
+            margin: 30px auto;
+            padding: 15px 25px;
+            background: #ff7e5f;
+            background: linear-gradient(135deg, #ff7e5f, #feb47b);
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .store-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.3);
+            color: #fff;
+        }
+
+        footer {
+            margin-top: 50px;
+            color: #fff;
+            font-size: 0.9rem;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 10px;
+        }
+
+        footer a {
+            color: #6ae3f5;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            header {
+                font-size: 2rem;
+            }
+            .tab {
+                padding: 10px 15px;
+            }
+            .quote-btn {
+                font-size: 1rem;
+                padding: 10px 20px;
+            }
+            #quote-box {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Website header -->
+    <header>
+        Welcome to Your Motivation!
+    </header>
+
+    <!-- Tabs Navigation -->
+    <div class="tabs">
+        <div class="tab active" onclick="openTab(event, 'tab1')">Quotes</div>
+        <div class="tab" onclick="openTab(event, 'tab2')">About</div>
+        <div class="tab" onclick="openTab(event, 'tab3')">Contact</div>
+    </div>
+
+    <!-- Tabs Content -->
+    <div id="tab1" class="tab-content active">
+        <button class="quote-btn" onclick="generateQuote()">Get Inspired</button>
+        <div id="quote-box">
+            Click the button above to see a motivational quote!
+        </div>
+        <a href="https://www.bonfire.com/store/motivation-10/?utm_source=copy_link&utm_medium=store_page_share&utm_campaign=motivation-10&utm_content=default" target="_blank" class="store-link">Visit Our Motivation Store</a>
+    </div>
+    <div id="tab2" class="tab-content">
+        <p>This website is your daily source of motivational quotes to inspire and energize you. Push forward, stay positive, and keep achieving your dreams!</p>
+    </div>
+    <div id="tab3" class="tab-content">
+        <p>Contact us at: <a href="mailto:contact@motivationzone.com">contact@motivationzone.com</a></p>
+    </div>
+
+    <!-- Footer with call-to-action -->
+    <footer>
+        Created with 💙 by <a href="#">Your Name</a>. Keep pushing forward!
+    </footer>
+
+    <!-- JavaScript Section -->
+    <script>
+        const quotes = [
+            "Believe in yourself and all that you are. Know that there is something inside you that is greater than any obstacle.",
+            "Your limitation—it’s only your imagination.",
+            "Push yourself, because no one else is going to do it for you.",
+            "Success doesn’t just find you. You have to go out and get it.",
+            "Great things never come from comfort zones.",
+            "Dream it. Wish it. Do it.",
+            "Stay focused and never give up.",
+            "Don’t wait for opportunity. Create it.",
+            "Sometimes later becomes never. Do it now."
+        ];
+
+        function generateQuote() {
+            const randomIndex = Math.floor(Math.random() * quotes.length);
+            const quoteBox = document.getElementById('quote-box');
+            quoteBox.textContent = quotes[randomIndex];
+            quoteBox.style.animation = 'none';
+            setTimeout(() => quoteBox.style.animation = 'pop 0.6s ease-in-out', 10);
+        }
+
+        function openTab(evt, tabName) {
+            const tabContents = document.getElementsByClassName('tab-content');
+            for (const content of tabContents) {
+                content.classList.remove('active');
+            }
+            const tabs = document.getElementsByClassName('tab');
+            for (const tab of tabs) {
+                tab.classList.remove('active');
+            }
+            document.getElementById(tabName).classList.add('active');
+            evt.currentTarget.classList.add('active');
+        }
+    </script>
+</body>
+</html>
