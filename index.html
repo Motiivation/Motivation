@@ -5,268 +5,242 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Motivation Zone</title>
     <style>
-        /* General styles */
+        /* Global Styling */
         body {
-            font-family: 'Poppins', sans-serif;
             margin: 0;
             padding: 0;
-            background: url('https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0') no-repeat center center/cover;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to right, #5c258d, #4389a2);
             color: #333;
-            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            line-height: 1.6;
         }
 
-        /* Header styling */
+        /* Header Style */
         header {
-            background: rgba(0, 0, 0, 0.7);
-            color: white;
-            padding: 1.5rem 0;
-            font-size: 2.5rem;
-            letter-spacing: 1px;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+            font-size: 3rem;
+            color: #fff;
+            text-align: center;
+            margin-top: 40px;
+            letter-spacing: 2px;
         }
 
-        /* Tabs styling */
+        /* Hero Image Style */
+        .hero-image {
+            width: 100%;
+            height: 300px;
+            background-image: url('https://img.freepik.com/free-photo/lake-surrounded-with-mountain_198169-308.jpg?t=st=1734557157~exp=1734560757~hmac=3091d595c007646e08dbbe91a22bba4893b5c671f827029a6b74f9a414d7dd01&w=1380'); /* Placeholder Image URL */
+            background-size: cover;
+            background-position: center;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+        /* Tabs Styling */
         .tabs {
             display: flex;
             justify-content: center;
-            background: rgba(255, 255, 255, 0.8);
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-            margin-bottom: 20px;
-            flex-wrap: wrap;
+            margin-top: 50px;
+            text-align: center;
         }
 
         .tab {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #fff;
+            background: rgba(0, 0, 0, 0.3);
+            margin: 10px 20px;
             padding: 15px 30px;
             cursor: pointer;
-            font-weight: bold;
-            color: #333;
-            transition: background 0.3s ease, color 0.3s ease;
+            border-radius: 30px;
+            transition: background 0.3s, transform 0.2s ease;
         }
 
-        .tab:hover, .tab.active {
-            background: #6a11cb;
-            color: white;
+        .tab:hover {
+            background: #ff7e5f;
+            transform: scale(1.05);
+        }
+
+        .tab.active {
+            background: #ff7e5f;
         }
 
         .tab-content {
             display: none;
-            padding: 20px;
-            background-color: rgba(255, 255, 255, 0.9);
-            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
-            border-radius: 10px;
-            margin: 0 auto;
+            width: 80%;
             max-width: 800px;
+            margin-top: 40px;
+            background: rgba(255, 255, 255, 0.85);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: opacity 0.5s ease-in-out;
         }
 
         .tab-content.active {
             display: block;
+            animation: fadeIn 0.5s ease-in-out;
         }
 
-        /* Button styling */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Motivational Quotes Styling */
+        #quote-box {
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            padding: 30px;
+            color: white;
+            font-size: 1.5rem;
+            text-align: center;
+            border-radius: 10px;
+            box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.2);
+            font-weight: 700;
+            margin-bottom: 30px;
+        }
+
+        /* Quote Button */
         .quote-btn {
-            margin: 30px auto;
-            padding: 15px 25px;
+            padding: 10px 30px;
+            background: #ff7e5f;
+            color: white;
+            border: none;
+            border-radius: 25px;
             font-size: 1.2rem;
             font-weight: bold;
-            color: white;
-            background: linear-gradient(135deg, #6a11cb, #2575fc);
-            border: none;
-            border-radius: 50px;
             cursor: pointer;
+            box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+            margin-top: 20px;
             transition: all 0.3s ease;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
         }
 
         .quote-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.3);
+            background: #6a11cb;
+            transform: scale(1.1);
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
         }
 
-        /* Quote Box Enhancements */
-        #quote-box {
-            position: relative;
-            margin: 20px auto;
-            padding: 2rem;
-            max-width: 600px;
-            background: rgba(255, 255, 255, 0.95);
-            box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.3);
+        /* About & Help Sections Styling */
+        .about-section, .help-section {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px;
             border-radius: 10px;
-            font-size: 1.5rem;
-            font-style: italic;
-            font-weight: bold;
-            color: #444;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
-            transform: scale(1);
-            animation: pop 0.6s ease-in-out;
+            box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-        #quote-box:after {
-            content: '\201C'; /* Opening Quote */
-            position: absolute;
-            top: -30px;
-            left: -20px;
-            font-size: 5rem;
-            font-weight: bold;
-            color: #6a11cb;
-            opacity: 0.5;
+        .about-section h2, .help-section h2 {
+            color: #2575fc;
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 2.5rem;
         }
 
-        #quote-box:before {
-            content: '\201D'; /* Closing Quote */
-            position: absolute;
-            bottom: -30px;
-            right: -20px;
-            font-size: 5rem;
-            font-weight: bold;
-            color: #6a11cb;
-            opacity: 0.5;
+        .about-section p, .help-section p {
+            font-size: 1.2rem;
+            color: #555;
+            margin-bottom: 20px;
         }
 
-        @keyframes pop {
-            0% {
-                transform: scale(0.8);
-                opacity: 0;
-            }
-            80% {
-                transform: scale(1.1);
-                opacity: 1;
-            }
-            100% {
-                transform: scale(1);
-            }
-        }
-
-        /* Styled Link Section */
-        .store-link {
-            display: inline-block;
-            margin: 30px auto;
-            padding: 15px 25px;
-            background: #ff7e5f;
-            background: linear-gradient(135deg, #ff7e5f, #feb47b);
-            color: #fff;
+        .store-link, .help-link {
             text-decoration: none;
+            color: #fff;
+            padding: 10px 30px;
+            background: #ff7e5f;
             font-weight: bold;
-            border-radius: 50px;
-            font-size: 1.1rem;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            border-radius: 30px;
+            display: inline-block;
             transition: all 0.3s ease;
         }
 
-        .store-link:hover {
-            transform: translateY(-3px);
-            box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.3);
-            color: #fff;
+        .store-link:hover, .help-link:hover {
+            background: #6a11cb;
+            transform: scale(1.05);
+            box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.2);
         }
 
+        /* Footer Style */
         footer {
-            margin-top: 50px;
+            position: fixed;
+            bottom: 10px;
+            text-align: center;
             color: #fff;
-            font-size: 0.9rem;
-            background: rgba(0, 0, 0, 0.7);
-            padding: 10px;
+            font-size: 1rem;
         }
 
         footer a {
-            color: #6ae3f5;
+            color: #ff7e5f;
             text-decoration: none;
             font-weight: bold;
         }
 
-        footer a:hover {
-            text-decoration: underline;
-        }
-
-        /* Responsive design */
+        /* Media Queries for smaller screens */
         @media (max-width: 768px) {
-            header {
-                font-size: 2rem;
-                padding: 1rem;
-            }
-
-            .tab {
-                padding: 10px 15px;
-                font-size: 1rem;
-            }
-
-            .quote-btn {
-                font-size: 1rem;
-                padding: 10px 20px;
-            }
-
-            #quote-box {
-                font-size: 1.3rem;
-                padding: 1.5rem;
-                max-width: 90%;
-            }
-
-            .store-link {
-                font-size: 1rem;
-                padding: 12px 20px;
-            }
-
             .tabs {
                 flex-direction: column;
             }
-        }
 
-        @media (max-width: 480px) {
-            header {
-                font-size: 1.8rem;
-                padding: 0.8rem;
-            }
-
-            .quote-btn {
-                padding: 10px 18px;
-                font-size: 0.9rem;
-            }
-
-            .store-link {
-                font-size: 0.9rem;
-                padding: 12px 18px;
-            }
-
-            #quote-box {
-                font-size: 1.1rem;
-                padding: 1.2rem;
-                max-width: 90%;
+            .tab {
+                margin: 10px;
+                width: 70%;
+                font-size: 1rem;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Website header -->
-    <header>
-        Welcome!
-    </header>
 
-    <!-- Tabs Navigation -->
+    <header>Welcome!</header>
+
+    <div class="hero-image"></div> <!-- Hero image added here -->
+
     <div class="tabs">
         <div class="tab active" onclick="openTab(event, 'tab1')">Quotes</div>
         <div class="tab" onclick="openTab(event, 'tab2')">About</div>
-        <div class="tab" onclick="openTab(event, 'tab3')">Contact</div>
+        <div class="tab" onclick="openTab(event, 'tab3')">Help</div>
     </div>
 
-    <!-- Tabs Content -->
     <div id="tab1" class="tab-content active">
-        <button class="quote-btn" onclick="generateQuote()">Get Inspired</button>
-        <div id="quote-box">
-            Click the button above to see a motivational quote!
-        </div>
-        <a href="https://www.bonfire.com/store/motivation-10/?utm_source=copy_link&utm_medium=store_page_share&utm_campaign=motivation-10&utm_content=default" target="_blank" class="store-link">Visit Our Motivation Store</a>
-    </div>
-    <div id="tab2" class="tab-content">
-        <p>This website is your daily source of motivational quotes to inspire and energize you. Push forward, stay positive, and keep achieving your dreams!</p>
-    </div>
-    <div id="tab3" class="tab-content">
-        <p>Contact us at: <a href="mailto:contact@motivationzone.com">contact@motivationzone.com</a></p>
+        <div id="quote-box">Click the button below to get a motivational quote!</div>
+        <button class="quote-btn" onclick="generateQuote()">✨ Get Inspired</button>
     </div>
 
-    <!-- Footer with call-to-action -->
+    <div id="tab2" class="tab-content">
+        <div class="about-section">
+            <h2>About Us</h2>
+            <p>Motivation Zone is designed to uplift and empower you. We aim to inspire greatness and personal growth. Every day is a new opportunity to grow, and we want to help guide you along the way!</p>
+            <h3>Support Us</h3>
+            <p>Your contributions help us continue spreading positivity. Visit our store and support a great cause!</p>
+            <a href="https://www.bonfire.com/store/motivation-10/" target="_blank" class="store-link">Visit Our Store</a>
+            <p>30% of profits from the store go towards supporting mental health initiatives and organizations.</p>
+        </div>
+    </div>
+
+    <div id="tab3" class="tab-content">
+        <div class="help-section">
+            <h2>Help & Resources</h2>
+            <p>It's important to know that help is always available. Here are some valuable resources you can use when you need support:</p>
+            <h3>Emergency Helplines</h3>
+            <ul>
+                <li><a href="https://suicidepreventionlifeline.org" target="_blank" class="help-link">Suicide Prevention Lifeline</a><br> Call 1-800-273-TALK (8255)</li>
+                <li><a href="https://www.crisistextline.org" target="_blank" class="help-link">Crisis Text Line</a><br> Text HOME to 741741 for confidential support</li>
+                <li><a href="https://www.nami.org" target="_blank" class="help-link">National Alliance on Mental Illness</a><br> Support, education, and resources for individuals living with mental health conditions</li>
+                <li><a href="https://www.mentalhealth.gov" target="_blank" class="help-link">MentalHealth.gov</a><br> Government resources and mental health tools</li>
+            </ul>
+            <h3>What to Do If You're Struggling</h3>
+            <p>Reach out to someone you trust or seek professional support. You don't have to go through this alone. Remember, there are always people ready to help.</p>
+        </div>
+    </div>
+
     <footer>
-        Created with 💙 by <a href="#">Reyes</a>. Keep pushing forward!
+        Created with ❤️ by <a href="#">Reyes</a>
     </footer>
 
-    <!-- JavaScript Section -->
     <script>
         const quotes = [
             "Push yourself, because no one else is going to do it for you.",
@@ -286,22 +260,15 @@
             const randomIndex = Math.floor(Math.random() * quotes.length);
             const quoteBox = document.getElementById('quote-box');
             quoteBox.textContent = quotes[randomIndex];
-            quoteBox.style.animation = 'none';
-            setTimeout(() => quoteBox.style.animation = 'pop 0.6s ease-in-out', 10);
         }
 
         function openTab(evt, tabName) {
-            const tabContents = document.getElementsByClassName('tab-content');
-            for (const content of tabContents) {
-                content.classList.remove('active');
-            }
-            const tabs = document.getElementsByClassName('tab');
-            for (const tab of tabs) {
-                tab.classList.remove('active');
-            }
+            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
             document.getElementById(tabName).classList.add('active');
             evt.currentTarget.classList.add('active');
         }
     </script>
+
 </body>
 </html>
