@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Motivation Zone</title>
+    <style>
+        /* Global Styling */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to right, #5c258d, #4389a2);
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            line-height: 1.6;
+        }
+
+        /* Header Style */
+        header {
+            font-size: 3rem;
+            color: #fff;
+            text-align: center;
+            margin-top: 40px;
+            letter-spacing: 2px;
+        }
+
+        /* Hero Image Style */
+        .hero-image {
+            width: 100%;
+            height: 300px;
+            background-image: url('https://img.freepik.com/free-photo/lake-surrounded-with-mountain_198169-308.jpg?t=st=1734557157~exp=1734560757~hmac=3091d595c007646e08dbbe91a22bba4893b5c671f827029a6b74f9a414d7dd01&w=1380'); /* Placeholder Image URL */
+            background-size: cover;
+            background-position: center;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+        /* Tabs Styling */
+        .tabs {
+            display: flex;
+            justify-content: center;
+            margin-top: 50px;
+            text-align: center;
+        }
+
+        .tab {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #fff;
+            background: rgba(0, 0, 0, 0.3);
+            margin: 10px 20px;
+            padding: 15px 30px;
+            cursor: pointer;
+            border-radius: 30px;
+            transition: background 0.3s, transform 0.2s ease;
+        }
+
+        .tab:hover {
+            background: #ff7e5f;
+            transform: scale(1.05);
+        }
+
+        .tab.active {
+            background: #ff7e5f;
+        }
+
+        .tab-content {
+            display: none;
+            width: 80%;
+            max-width: 800px;
+            margin-top: 40px;
+            background: rgba(255, 255, 255, 0.85);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Motivational Quotes Styling */
+        #quote-box {
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            padding: 30px;
+            color: white;
+            font-size: 1.5rem;
+            text-align: center;
+            border-radius: 10px;
+            box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.2);
+            font-weight: 700;
+            margin-bottom: 30px;
+        }
+
+        /* Quote Button */
+        .quote-btn {
+            padding: 10px 30px;
+            background: #ff7e5f;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+            margin-top: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .quote-btn:hover {
+            background: #6a11cb;
+            transform: scale(1.1);
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        /* About & Help Sections Styling */
+        .about-section, .help-section {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .about-section h2, .help-section h2 {
+            color: #2575fc;
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 2.5rem;
+        }
+
+        .about-section p, .help-section p {
+            font-size: 1.2rem;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        .store-link, .help-link {
+            text-decoration: none;
+            color: #fff;
+            padding: 10px 30px;
+            background: #ff7e5f;
+            font-weight: bold;
+            border-radius: 30px;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+
+        .store-link:hover, .help-link:hover {
+            background: #6a11cb;
+            transform: scale(1.05);
+            box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Footer Style */
+        footer {
+            position: fixed;
+            bottom: 10px;
+            text-align: center;
+            color: #fff;
+            font-size: 1rem;
+        }
+
+        footer a {
+            color: #ff7e5f;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        /* Media Queries for smaller screens */
+        @media (max-width: 768px) {
+            .tabs {
+                flex-direction: column;
+            }
+
+            .tab {
+                margin: 10px;
+                width: 70%;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>Welcome!</header>
+
+    <div class="hero-image"></div> <!-- Hero image added here -->
+
+    <div class="tabs">
+        <div class="tab active" onclick="openTab(event, 'tab1')">Quotes</div>
+        <div class="tab" onclick="openTab(event, 'tab2')">About</div>
+        <div class="tab" onclick="openTab(event, 'tab3')">Help</div>
+    </div>
+
+    <div id="tab1" class="tab-content active">
+        <div id="quote-box">Click the button below to get a motivational quote!</div>
+        <button class="quote-btn" onclick="generateQuote()">✨ Get Inspired</button>
+    </div>
+
+    <div id="tab2" class="tab-content">
+        <div class="about-section">
+            <h2>About Us</h2>
+            <p>Motivation Zone is designed to uplift and empower you. We aim to inspire greatness and personal growth. Every day is a new opportunity to grow, and we want to help guide you along the way!</p>
+            <h3>Support Us</h3>
+            <p>Your contributions help us continue spreading positivity. Visit our store and support a great cause!</p>
+            <a href="https://www.bonfire.com/store/motivation-10/" target="_blank" class="store-link">Visit Our Store</a>
+            <p>30% of profits from the store go towards supporting mental health initiatives and organizations.</p>
+        </div>
+    </div>
+
+    <div id="tab3" class="tab-content">
+        <div class="help-section">
+            <h2>Help & Resources</h2>
+            <p>It's important to know that help is always available. Here are some valuable resources you can use when you need support:</p>
+            <h3>Emergency Helplines</h3>
+            <ul>
+                <li><a href="https://suicidepreventionlifeline.org" target="_blank" class="help-link">Suicide Prevention Lifeline</a><br> Call 1-800-273-TALK (8255)</li>
+                <li><a href="https://www.crisistextline.org" target="_blank" class="help-link">Crisis Text Line</a><br> Text HOME to 741741 for confidential support</li>
+                <li><a href="https://www.nami.org" target="_blank" class="help-link">National Alliance on Mental Illness</a><br> Support, education, and resources for individuals living with mental health conditions</li>
+                <li><a href="https://www.mentalhealth.gov" target="_blank" class="help-link">MentalHealth.gov</a><br> Government resources and mental health tools</li>
+            </ul>
+            <h3>What to Do If You're Struggling</h3>
+            <p>Reach out to someone you trust or seek professional support. You don't have to go through this alone. Remember, there are always people ready to help.</p>
+        </div>
+    </div>
+
+    <footer>
+        Created with ❤️ by <a href="#">Reyes</a>
+    </footer>
+
+    <script>
+        const quotes = [
+            "Push yourself, because no one else is going to do it for you.",
+            "Success doesn’t just find you. You have to go out and get it.",
+            "Great things never come from comfort zones.",
+            "Dream it. Wish it. Do it.",
+            "Stay focused and never give up.",
+            "Don’t wait for opportunity. Create it.",
+            "Sometimes later becomes never. Do it now.",
+            "Hard work beats talent when talent doesn't work hard.",
+            "The only way to do great work is to love what you do.",
+            "The future depends on what you do today.",
+            "Do what you can with all you have, wherever you are."
+        ];
+
+        function generateQuote() {
+            const randomIndex = Math.floor(Math.random() * quotes.length);
+            const quoteBox = document.getElementById('quote-box');
+            quoteBox.textContent = quotes[randomIndex];
+        }
+
+        function openTab(evt, tabName) {
+            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+            document.getElementById(tabName).classList.add('active');
+            evt.currentTarget.classList.add('active');
+        }
+    </script>
+
+</body>
+</html>
